@@ -15,6 +15,10 @@ namespace ofxSpout2 {
 
 		void updateTexture();
 
+		bool detecting() { return mbDetecting; }
+
+		char* getSenderName() { return SenderName; }
+
 		// call updateTexture() in a draw() call before (not in update())
 		ofTexture &getTexture() { return mTexture; }
 
@@ -23,7 +27,8 @@ namespace ofxSpout2 {
 
 	private:
 		SpoutReceiver *mReceiver;
-		bool mbInitialized; ;
+		bool mbInitialized;
+		bool mbDetecting;
 		char SenderName[256];
 		ofTexture mTexture;
 	};

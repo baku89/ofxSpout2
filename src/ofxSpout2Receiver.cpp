@@ -24,9 +24,11 @@ void Receiver::updateTexture() {
 		if (mReceiver->CreateReceiver(SenderName, width, height, true)) {
 			mTexture.allocate(width, height, GL_RGBA);
 			mbInitialized = true;
+			mbDetecting = true;
 			return;
 		}
 		else {
+			mbDetecting = false;
 			ofLogWarning("ofxSpout", "No sender detected");
 		}
 	}
@@ -47,9 +49,11 @@ void Receiver::updateTexture() {
 			// receiving failed
 			mReceiver->ReleaseReceiver();
 			mbInitialized = false;
+			mbDetecting = false;
 		}
 	}
 }
+
 
 void Receiver::exit() {
 	if(mReceiver != NULL && mbInitialized)
